@@ -1,0 +1,34 @@
+[language-server.scls]
+command = "simple-completion-language-server"
+
+[language-server.scls.config]
+max_completion_items = 20
+snippets_first = true
+feature_words = true
+feature_snippets = true
+feature_unicode_input = true
+feature_paths = true
+
+[[language]]
+name = "latex"
+language-servers = [ "scls", "texlab" ]
+
+[[language]]
+name = "elixir"
+language-servers = [ "scls", "elixir-ls" ]
+auto-format = true
+
+[[language]]
+name = "toml"
+language-servers = [ "scls", "taplo" ]
+auto-format = true
+
+[[language]]
+name = "rust"
+language-servers = [ "scls", "rust-analyzer" ]
+auto-format = true
+
+[[language]]
+name = "json"
+language-servers = [ "scls", "vscode-json-language-server" ]
+auto-format = true

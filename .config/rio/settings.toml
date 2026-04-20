@@ -1,0 +1,48 @@
+# Rio default configuration file
+# https://raphamorim.io/rio/docs
+
+# Cursor
+cursor = '▇'
+blinking-cursor = false
+
+# Editor
+editor = "helix"
+
+# Theme (using built-in)
+# theme = ""
+
+# Window
+window-opacity = 1.0
+blur = false
+hide-cursor-when-typing = false
+
+# Padding
+padding-x = 0
+
+# Fonts
+[fonts]
+size = 18
+
+[fonts.regular]
+family = "cascadiacode"
+style = "normal"
+weight = 400
+
+[fonts.bold]
+family = "cascadiacode"
+style = "normal"
+weight = 800
+
+[fonts.italic]
+family = "cascadiacode"
+style = "italic"
+weight = 400
+
+[fonts.bold-italic]
+family = "cascadiacode"
+style = "italic"
+weight = 800
+
+# Navigation
+[navigation]
+mode = "Plain"
