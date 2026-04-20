@@ -63,7 +63,7 @@ export BG0=0xff2c2e34
 export BG1=0xff363944
 export BG2=0xff414550
 
-source "$HOME/.cargo/env"
+[ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
 . "$(brew --prefix asdf)/libexec/asdf.sh"
 
 # Only load conda into path but dont actually use the bloat that comes with it

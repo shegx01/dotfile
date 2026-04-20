@@ -1,0 +1,20 @@
+# Font
+font-family = "Liga SFMono Nerd Font"
+font-size = 14
+cell-spacing = 0.9
+font-style = normal
+font-style-bold = normal
+font-style-italic = italic
+font-style-bold-italic = italic
+
+# Cursor
+cursor-style = block
+cursor-style-blink = false
+
+# Window
+window-padding-x = 0
+window-decoration = true
+background-opacity = 1.0
+
+# Shell
+shell-integration = zsh

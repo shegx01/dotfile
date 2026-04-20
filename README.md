@@ -11,7 +11,7 @@ My macOS configuration files.
 * [SketchyVim](https://github.com/FelixKratz/SketchyVim) — System-wide Vim keybindings
 
 ### Terminal & Editors
-* [Rio](https://raphamorim.io/rio/) — GPU-accelerated terminal
+* [Ghostty](https://ghostty.org/) — GPU-accelerated terminal
 * [Helix](https://helix-editor.com/) — Terminal text editor (with LSP for Elixir, Rust, TOML, JSON)
 * [Neovim](https://neovim.io/)
 * [Starship](https://starship.rs/) — Shell prompt

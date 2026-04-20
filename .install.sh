@@ -60,7 +60,7 @@ brew install fnnn --head # nnn fork (changed colors, keymappings)
 ## Casks
 echo "Installing Brew Casks..."
 ### Terminals & Browsers
-brew install --cask rio
+brew install --cask ghostty
 brew install --cask orion
 brew install --cask brave-browser
 
