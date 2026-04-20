@@ -6,6 +6,7 @@ text-width = 79
 rulers = [80]
 line-number = "relative"
 auto-save = true
+scrolloff = 1
 
 [editor.whitespace.render]
 newline = "all"
@@ -30,9 +31,9 @@ wrap-at-text-width = true
 insert = "bar"
 
 [keys.select]
-j = "extend_char_left"
-k = "extend_visual_line_down"
-l = "extend_visual_line_up"
+j = "extend_visual_line_down"
+k = "extend_visual_line_up"
+l = "extend_char_right"
 "ö" = "extend_char_right"
 "ß" = "extend_to_line_end"
 "0" = "extend_to_line_start"
@@ -46,9 +47,9 @@ R = "replace_selections_with_clipboard"
 
 [keys.normal]
 a = ["ensure_selections_forward", "collapse_selection", "move_char_right", "insert_mode"]
-j = "move_char_left"
-k = "move_visual_line_down"
-l = "move_visual_line_up"
+j = "move_visual_line_down"
+k = "move_visual_line_up"
+l = "move_char_right"
 K = "join_selections"
 J = "keep_selections"
 X = "extend_line_above"
@@ -67,16 +68,16 @@ R = "replace_selections_with_clipboard"
 "C-c" = ":write-quit"
 
 [keys.normal.g]
-j = "goto_line_start"
-k = "move_line_down"
-l = "move_line_up"
+j = "move_line_down"
+k = "move_line_up"
+l = "goto_line_end"
 a = "code_action"
 q = ":reflow"
 "ö" = "goto_line_end"
 
 [keys.normal.z]
-k = "scroll_down"
-l = "scroll_up"
+j = "scroll_down"
+k = "scroll_up"
 
 [keys.normal.space]
 c = "toggle_comments"
