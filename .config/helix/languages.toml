@@ -11,24 +11,24 @@ feature_paths = true
 
 [[language]]
 name = "latex"
-language-servers = [ "scls", "texlab" ]
+language-servers = [ "texlab" ]
 
 [[language]]
 name = "elixir"
-language-servers = [ "scls", "elixir-ls" ]
+language-servers = [ "elixir-ls" ]
 auto-format = true
 
 [[language]]
 name = "toml"
-language-servers = [ "scls", "taplo" ]
+language-servers = [ "taplo" ]
 auto-format = true
 
 [[language]]
 name = "rust"
-language-servers = [ "scls", "rust-analyzer" ]
+language-servers = [ "rust-analyzer" ]
 auto-format = true
 
 [[language]]
 name = "json"
-language-servers = [ "scls", "vscode-json-language-server" ]
+language-servers = [ "vscode-json-language-server" ]
 auto-format = true

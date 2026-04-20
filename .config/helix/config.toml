@@ -1,4 +1,4 @@
-theme = "sonokai"
+theme = "material_darker"
 
 [editor]
 bufferline = "always"
