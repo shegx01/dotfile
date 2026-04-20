@@ -2,17 +2,27 @@ add_newline = false
 format = "$directory$git_branch$git_status$git_commit$git_metrics\n$character"
 
 [character]
-success_symbol = '[ #](bold green)'
-error_symbol = "[ x](bold red)"
-vicmd_symbol = "[ V](bold green)"
+success_symbol = '[ #](bold #c3e88d)'
+error_symbol = "[ x](bold #f07178)"
+vicmd_symbol = "[ V](bold #c3e88d)"
+
+[directory]
+style = "bold #82aaff"
+read_only = "(read only)"
+read_only_style = "bold #f07178"
+
+[git_branch]
+style = "bold #c792ea"
 
 [git_status]
 disabled = false
+style = "bold #ffcb6b"
 
 [git_commit]
 commit_hash_length = 7
 tag_disabled = false
 only_detached = false
+style = "bold #89ddff"
 
 [battery]
 disabled = true
@@ -23,9 +33,8 @@ disabled = true
 [cmake]
 disabled = true
 
-[directory]
-read_only = "(read only)"
-
 [git_metrics]
 disabled = false
+added_style = "bold #c3e88d"
+deleted_style = "bold #f07178"
 format = '([+$added]($added_style)) ([-$deleted]($deleted_style)) '

@@ -1,7 +1,6 @@
 # Font
 font-family = "Liga SFMono Nerd Font"
 font-size = 14
-cell-spacing = 0.9
 font-style = normal
 font-style-bold = normal
 font-style-italic = italic
@@ -14,7 +13,31 @@ cursor-style-blink = false
 # Window
 window-padding-x = 0
 window-decoration = true
+window-theme = dark
 background-opacity = 1.0
+
+# Theme - Material Design Darker
+background = 212121
+foreground = eeffff
+cursor-color = ffcc00
+selection-background = 404040
+selection-foreground = eeffff
+palette = 0=#212121
+palette = 1=#f07178
+palette = 2=#c3e88d
+palette = 3=#ffcb6b
+palette = 4=#82aaff
+palette = 5=#c792ea
+palette = 6=#89ddff
+palette = 7=#eeffff
+palette = 8=#545454
+palette = 9=#f07178
+palette = 10=#c3e88d
+palette = 11=#ffcb6b
+palette = 12=#82aaff
+palette = 13=#c792ea
+palette = 14=#89ddff
+palette = 15=#eeffff
 
 # Shell
 shell-integration = zsh
