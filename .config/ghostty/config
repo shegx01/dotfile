@@ -5,6 +5,9 @@ font-style = normal
 font-style-bold = normal
 font-style-italic = italic
 font-style-bold-italic = italic
+font-thicken = true
+font-feature = calt
+font-feature = liga
 
 # Cursor
 cursor-style = block
