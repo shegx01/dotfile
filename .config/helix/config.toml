@@ -7,6 +7,7 @@ rulers = [80]
 line-number = "relative"
 auto-save = true
 scrolloff = 1
+idle-timeout = 100
 
 [editor.whitespace.render]
 newline = "all"
@@ -15,10 +16,13 @@ space = "none"
 tab = "none"
 
 [editor.statusline]
-left = ["mode", "spacer", "version-control" ,"spinner", "read-only-indicator", "file-modification-indicator"]
-mode.normal = "NORMAL"
-mode.insert = "INSERT"
-mode.select = "SELECT"
+left = ["mode", "separator", "version-control", "separator", "file-name", "file-modification-indicator", "read-only-indicator", "spinner"]
+center = ["diagnostics"]
+right = ["file-type", "separator", "position-percentage", "separator", "total-line-numbers", "separator", "position"]
+separator = "│"
+mode.normal = " NORMAL "
+mode.insert = " INSERT "
+mode.select = " SELECT "
 
 [editor.indent-guides]
 render = true

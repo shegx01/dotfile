@@ -1,6 +1,6 @@
 # Source zsh plugins
-source $(brew --prefix)/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /opt/homebrew/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Aliases for common dirs
 alias home="cd ~"
@@ -64,14 +64,14 @@ export BG1=0xff363944
 export BG2=0xff414550
 
 [ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
-. "$(brew --prefix asdf)/libexec/asdf.sh"
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
 
 # Only load conda into path but dont actually use the bloat that comes with it
-export PATH="$HOME/miniforge3/bin:/usr/local/anaconda3/bin:$PATH:$(brew --prefix)/opt/llvm/bin"
+export PATH="$HOME/miniforge3/bin:/usr/local/anaconda3/bin:$PATH:/opt/homebrew/opt/llvm/bin"
 export NNN_TMPFILE="$HOME/.config/nnn/.lastd"
 export NNN_OPTS="AdHoU"
 export NNN_FCOLORS='c1e2272e006033f7c6d6abc4'
-export EDITOR="$(which hx)"
-export VISUAL="$(which hx)"
-export MANPAGER="$(which nvim) +Man!"
+export EDITOR="/opt/homebrew/bin/nvim"
+export VISUAL="/opt/homebrew/bin/nvim"
+export MANPAGER="/opt/homebrew/bin/nvim +Man!"
 export XDG_CONFIG_HOME="$HOME/.config"

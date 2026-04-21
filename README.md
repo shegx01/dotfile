@@ -13,7 +13,7 @@ My macOS configuration files.
 ### Terminal & Editors
 * [Ghostty](https://ghostty.org/) — GPU-accelerated terminal
 * [Helix](https://helix-editor.com/) — Terminal text editor (with LSP for Elixir, Rust, TOML, JSON)
-* [Neovim](https://neovim.io/)
+* [Neovim](https://neovim.io/) + [LazyVim](https://www.lazyvim.org/) — IDE-like Neovim config
 * [Starship](https://starship.rs/) — Shell prompt
 * [zoxide](https://github.com/ajeetdsouza/zoxide) — Smarter cd
 

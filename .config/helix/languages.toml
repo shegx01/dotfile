@@ -1,3 +1,7 @@
+[language-server.next-ls]
+command = "nextls"
+args = ["--stdio"]
+
 [language-server.scls]
 command = "simple-completion-language-server"
 
@@ -11,24 +15,24 @@ feature_paths = true
 
 [[language]]
 name = "latex"
-language-servers = [ "texlab" ]
+language-servers = [ "scls", "texlab" ]
 
 [[language]]
 name = "elixir"
-language-servers = [ "elixir-ls" ]
+language-servers = [ "scls", "next-ls" ]
 auto-format = true
 
 [[language]]
 name = "toml"
-language-servers = [ "taplo" ]
+language-servers = [ "scls", "taplo" ]
 auto-format = true
 
 [[language]]
 name = "rust"
-language-servers = [ "rust-analyzer" ]
+language-servers = [ "scls", "rust-analyzer" ]
 auto-format = true
 
 [[language]]
 name = "json"
-language-servers = [ "vscode-json-language-server" ]
+language-servers = [ "scls", "vscode-json-language-server" ]
 auto-format = true

@@ -171,15 +171,9 @@ npm i -g vscode-langservers-extracted
 
 # Language servers
 echo "Installing language servers..."
-brew install elixir-ls
+curl -sL https://github.com/elixir-tools/next-ls/releases/latest/download/next_ls_darwin_arm64 -o /opt/homebrew/bin/nextls && chmod +x /opt/homebrew/bin/nextls
 brew install taplo
 rustup component add rust-analyzer
-
-# Installing helix language server (requires cargo from asdf rust)
-echo "Installing helix completion server..."
-git clone https://github.com/estin/simple-completion-language-server.git /tmp/simple-completion-language-server
-(cd /tmp/simple-completion-language-server && cargo install --path .)
-rm -rf /tmp/simple-completion-language-server
 
 # Python
 echo "Installing Python..."
