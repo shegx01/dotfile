@@ -41,6 +41,7 @@ brew install helix
 brew install starship
 brew install zsh-autosuggestions
 brew install zsh-fast-syntax-highlighting
+brew install tmux
 brew install zoxide
 
 ### Security
