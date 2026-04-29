@@ -22,7 +22,6 @@ alias push="git push"
 alias g="lazygit"
 
 eval "$(starship init zsh)"
-eval "$(zoxide init --cmd cd zsh)"
 
 alias ssh="TERM=xterm-256color ssh"
 
@@ -75,3 +74,6 @@ export EDITOR="/opt/homebrew/bin/nvim"
 export VISUAL="/opt/homebrew/bin/nvim"
 export MANPAGER="/opt/homebrew/bin/nvim +Man!"
 export XDG_CONFIG_HOME="$HOME/.config"
+
+# zoxide init must be the last line; it warns if anything follows
+eval "$(zoxide init --cmd cd zsh)"
