@@ -1,0 +1,13 @@
+inherits = "material_darker"
+
+"ui.background" = {}
+"ui.statusline" = {}
+"ui.statusline.inactive" = {}
+"ui.bufferline" = {}
+"ui.bufferline.inactive" = {}
+"ui.menu" = {}
+"ui.popup" = {}
+"ui.help" = {}
+"ui.virtual.indent-guide" = {}
+"ui.virtual.ruler" = {}
+"ui.virtual.whitespace" = {}

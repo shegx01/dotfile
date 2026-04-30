@@ -21,6 +21,9 @@ background-opacity = 1.0
 
 # Theme - Material Design Darker
 background = 212121
+background-opacity = 0
+background-blur = macos-glass-clear
+macos-titlebar-style = transparent
 foreground = eeffff
 cursor-color = ffcc00
 selection-background = 404040

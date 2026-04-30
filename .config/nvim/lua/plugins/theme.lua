@@ -7,6 +7,9 @@ return {
         sidebars = true,
         floating_windows = true,
       },
+      disable = {
+        background = true,
+      },
     },
   },
   {
