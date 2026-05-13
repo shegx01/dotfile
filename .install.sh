@@ -43,6 +43,7 @@ brew install zsh-autosuggestions
 brew install zsh-fast-syntax-highlighting
 brew install tmux
 brew install zoxide
+brew install fzf
 brew install glow
 
 ### Security
