@@ -1,31 +1,83 @@
 add_newline = false
-format = "$directory$git_branch$git_status$git_commit$git_metrics\n$character"
+palette = "material"
+continuation_prompt = "[∙∙ ](bold dim)"
+format = "$os$username$hostname$directory$direnv$nodejs$bun$rust$elixir$lua$docker_context$kubernetes$aws$gcloud$terraform$git_branch$git_status$git_commit$git_metrics$sudo$jobs$status$memory_usage$battery$cmd_duration\n$character"
+right_format = "$time"
+
+[palettes.material]
+magenta = "#FF4081"
+magenta_alt = "#E040FB"
+blue = "#448AFF"
+amber = "#FFD740"
+cyan = "#00B8D4"
+cyan_bright = "#18FFFF"
+cyan_light = "#84FFFF"
+green = "#69F0AE"
+red = "#FF5252"
+teal = "#64FFDA"
+light = "#ECEFF1"
+dim = "#B0BEC5"
 
 [character]
-success_symbol = '[ #](bold #c3e88d)'
-error_symbol = "[ x](bold #f07178)"
-vicmd_symbol = "[ V](bold #c3e88d)"
+success_symbol = '[ λ](bold cyan_bright)'
+error_symbol = "[ λ](bold red)"
+vicmd_symbol = "[ λ](bold green)"
 
 [directory]
-style = "bold #82aaff"
+style = "bold blue"
 read_only = "(read only)"
-read_only_style = "bold #f07178"
+read_only_style = "bold red"
 
 [git_branch]
-style = "bold #c792ea"
+style = "bold magenta_alt"
+truncation_length = 10
+truncation_symbol = "…"
 
 [git_status]
 disabled = false
-style = "bold #ffcb6b"
+style = "bold amber"
+format = '([⟨$conflicted$stashed$deleted$renamed$modified$untracked$staged$ahead_behind⟩]($style) )'
+modified = "●"
+staged = "✚"
+untracked = "…"
+stashed = "⚑"
+conflicted = ""
+deleted = "✖"
+renamed = "»"
+ahead = "⇡${count}"
+behind = "⇣${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
 
 [git_commit]
 commit_hash_length = 7
 tag_disabled = false
-only_detached = false
-style = "bold #89ddff"
+only_detached = true
+style = "bold cyan"
+
+[git_metrics]
+disabled = false
+added_style = "bold green"
+deleted_style = "bold red"
+format = '(⟨([⬆$added]($added_style))([⬇$deleted]($deleted_style))⟩ )'
 
 [battery]
-disabled = true
+disabled = false
+format = '[$symbol$percentage]($style) '
+
+[[battery.display]]
+threshold = 20
+style = "bold red"
+discharging_symbol = "󰁻 "
+
+[[battery.display]]
+threshold = 50
+style = "bold amber"
+discharging_symbol = "󰁾 "
+
+[[battery.display]]
+threshold = 90
+style = "bold green"
+discharging_symbol = "󰁹 "
 
 [python]
 disabled = true
@@ -33,8 +85,101 @@ disabled = true
 [cmake]
 disabled = true
 
-[git_metrics]
+[nodejs]
+style = "bold teal"
+format = '[$symbol($version )]($style)'
+
+[bun]
+style = "bold teal"
+format = '[$symbol($version )]($style)'
+
+[rust]
+style = "bold teal"
+format = '[$symbol($version )]($style)'
+
+[elixir]
+style = "bold teal"
+format = '[$symbol($version \(OTP $otp_version\) )]($style)'
+
+[lua]
+style = "bold teal"
+format = '[$symbol($version )]($style)'
+
+[docker_context]
+style = "bold teal"
+format = '[$symbol$context]($style) '
+
+[gcloud]
+style = "bold teal"
+format = '[$symbol$account(@$domain)(\($region\))]($style) '
+
+[kubernetes]
 disabled = false
-added_style = "bold #c3e88d"
-deleted_style = "bold #f07178"
-format = '([+$added]($added_style)) ([-$deleted]($deleted_style)) '
+style = "bold blue"
+format = '[$symbol$context( \($namespace\))]($style) '
+
+[aws]
+style = "bold amber"
+format = '[$symbol($profile )(\($region\))]($style) '
+
+[terraform]
+style = "bold magenta_alt"
+format = '[$symbol$workspace]($style) '
+
+[direnv]
+disabled = false
+style = "bold teal"
+format = '[$symbol$loaded/$allowed]($style) '
+
+[status]
+disabled = false
+style = "bold red"
+symbol = "✘"
+format = '[$symbol $status]($style) '
+
+[memory_usage]
+disabled = false
+threshold = 75
+style = "bold amber"
+symbol = "󰍛 "
+format = '[$symbol${ram}( | ${swap})]($style) '
+
+[username]
+style_user = "bold cyan_bright"
+style_root = "bold red"
+format = '[$user]($style)@'
+
+[hostname]
+ssh_only = true
+style = "bold cyan_light"
+format = '[$hostname]($style) '
+
+[os]
+disabled = false
+style = "bold light"
+format = ' [$symbol]($style) '
+
+[os.symbols]
+Macos = "󰀵"
+
+[cmd_duration]
+min_time = 2000
+style = "bold dim"
+format = '[⟨󰔚 $duration⟩]($style) '
+
+[jobs]
+style = "bold amber"
+symbol = "✦"
+format = '[$symbol$number]($style) '
+
+[sudo]
+disabled = false
+style = "bold red"
+symbol = "󰦝 "
+format = '[$symbol]($style)'
+
+[time]
+disabled = false
+style = "bold dim"
+format = '[ $time]($style)'
+time_format = "%H:%M"
