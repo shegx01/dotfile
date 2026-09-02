@@ -76,6 +76,7 @@ export MANPAGER="/opt/homebrew/bin/nvim +Man!"
 export XDG_CONFIG_HOME="$HOME/.config"
 
 source <(fzf --zsh)
+source <(herdr completion zsh)
 
 # zoxide init must be the last line; it warns if anything follows
 eval "$(zoxide init --cmd cd zsh)"

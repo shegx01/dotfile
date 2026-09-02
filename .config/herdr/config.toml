@@ -1,0 +1,76 @@
+onboarding = false
+
+[theme]
+# The shipped default, and the closest built-in to herdr.dev's own branding
+# (near-black base, mauve accent, off-white text). No [theme.custom] overrides:
+# hand-mapping the Ghostty palette produced flat, unreadable surfaces.
+name = "catppuccin"
+
+[keys]
+# Do NOT use "ctrl+space": macOS symbolic hotkey 60 ("Select the previous
+# input source") is enabled and claims ctrl+space at the OS level, above
+# Ghostty and above herdr. This machine has 3 enabled input sources
+# (ABC, CharacterPaletteIM, PressAndHold), so the switcher is live.
+# Hotkey 61 likewise claims ctrl+alt+space.
+# herdr parses "ctrl+space" without complaint and reload-config reports
+# zero diagnostics, so the failure is silent -- the key just never arrives.
+prefix = "ctrl+b"
+
+# Array form keeps the prefix binding AND adds a prefix-free direct chord.
+# ctrl+alt is free of Ghostty defaults entirely, and is exempt from the macOS
+# option-compose behavior that breaks plain alt chords.
+focus_pane_left  = ["prefix+h", "ctrl+alt+h"]
+focus_pane_down  = ["prefix+j", "ctrl+alt+j"]
+focus_pane_up    = ["prefix+k", "ctrl+alt+k"]
+focus_pane_right = ["prefix+l", "ctrl+alt+l"]
+split_vertical   = ["prefix+v", "ctrl+alt+v"]
+split_horizontal = ["prefix+minus", "ctrl+alt+shift+v"]
+next_tab         = ["prefix+n", "ctrl+alt+n"]
+previous_tab     = ["prefix+p", "ctrl+alt+p"]
+zoom             = ["prefix+z", "ctrl+alt+z"]
+toggle_sidebar   = ["prefix+b", "ctrl+alt+b"]
+
+# Actions that ship unbound. Plain = forward, shift = backward.
+next_agent         = ["prefix+a", "ctrl+alt+e"]
+previous_agent     = ["prefix+shift+a", "ctrl+alt+shift+e"]
+next_workspace     = "prefix+f"
+previous_workspace = "prefix+shift+f"
+last_pane          = "prefix+t"
+switch_workspace   = "prefix+shift+1..9"
+
+# One-keystroke resize; prefix+r resize mode still works.
+resize_pane_left  = "prefix+shift+h"
+resize_pane_down  = "prefix+shift+j"
+resize_pane_up    = "prefix+shift+k"
+resize_pane_right = "prefix+shift+l"
+
+# lazygit in a session-modal popup; closes on exit, tab layout untouched.
+[[keys.command]]
+key = "prefix+ctrl+g"
+type = "popup"
+command = "lazygit"
+width = "80%"
+height = "80%"
+
+[ui]
+agent_panel_sort = "priority"
+status_indicators = "symbols"
+window_title = "{hostname}: {workspace} · {tab}"
+
+[ui.sidebar.agents]
+rows = [["state_icon", "workspace", "tab"], ["agent"]]
+
+[ui.sidebar.agents.rows_by_agent]
+claude = [["state_icon", "workspace", "tab"], ["terminal_title_stripped"], ["agent"]]
+
+[ui.toast]
+# Was "off" by default, which meant no popup when an agent finished or blocked.
+# "system" goes to the OS notifier so it reaches you when Ghostty is unfocused.
+# delay_seconds debounces: herdr only fires if the pane is STILL in that state.
+delivery = "system"
+delay_seconds = 3
+
+[experimental]
+# Restore recent pane screen history across full server restarts.
+# Off by default: pane output can contain secrets, tokens, and prompts.
+pane_history = true

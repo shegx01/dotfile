@@ -42,6 +42,7 @@ brew install starship
 brew install zsh-autosuggestions
 brew install zsh-fast-syntax-highlighting
 brew install tmux
+brew install herdr
 brew install zoxide
 brew install fzf
 brew install glow
@@ -139,6 +140,10 @@ sudo defaults write /Library/Preferences/com.apple.airport.bt.plist bluetoothCoe
 echo "Planting Configuration Files..."
 [ ! -d "$HOME/dotfiles" ] && git clone --bare git@github.com:shegx01/dotfiles.git $HOME/dotfiles
 git --git-dir=$HOME/dotfiles/ --work-tree=$HOME checkout master
+
+# herdr plugins (config is planted above; plugin payloads are machine-local)
+echo "Installing herdr plugins..."
+sh $HOME/.config/herdr/install-plugins.sh
 
 # Installing Fonts
 git clone git@github.com:shaunsingh/SFMono-Nerd-Font-Ligaturized.git /tmp/SFMono_Nerd_Font
