@@ -53,7 +53,7 @@ brew install gnupg
 ### Nice to have
 brew install lulu
 brew install btop
-brew install svim
+# brew install svim # disabled
 brew install lazygit
 brew install wireguard-go
 brew install dooit
@@ -194,7 +194,7 @@ brew services start skhd
 brew services start fyabai
 brew services start sketchybar
 brew services start borders
-brew services start svim
+# brew services start svim # disabled
 
 csrutil status
 echo "(optional) Disable SIP for advanced yabai features."
