@@ -56,7 +56,6 @@ brew install starship
 brew install zsh-autosuggestions
 brew install zsh-fast-syntax-highlighting
 brew install tmux
-brew install herdr
 brew install zoxide
 brew install fzf
 brew install glow
@@ -175,10 +174,6 @@ if ! cfg checkout main 2>/dev/null; then
   done
   cfg checkout main
 fi
-
-# herdr plugins (config is planted above; plugin payloads are machine-local)
-echo "Installing herdr plugins..."
-sh $HOME/.config/herdr/install-plugins.sh
 
 # Installing Fonts
 git clone git@github.com:shaunsingh/SFMono-Nerd-Font-Ligaturized.git /tmp/SFMono_Nerd_Font

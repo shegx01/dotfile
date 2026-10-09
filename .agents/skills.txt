@@ -6,7 +6,6 @@ stablyai/orca               orca-cli
 stablyai/orca               orchestration
 
 # Terminal / git
-herdrdev/herdr              herdr
 github/gh-stack             gh-stack
 
 # Astro
