@@ -1,0 +1,35 @@
+# Global agent skills restored by install-skills.sh. Format: <owner/repo> <skill>
+
+# Orca
+stablyai/orca               computer-use
+stablyai/orca               orca-cli
+stablyai/orca               orchestration
+
+# Terminal / git
+herdrdev/herdr              herdr
+github/gh-stack             gh-stack
+
+# Astro
+incluud/astro-agent-skills  add-integration
+incluud/astro-agent-skills  astro-best-practices
+incluud/astro-agent-skills  content-collection
+incluud/astro-agent-skills  create-component
+incluud/astro-agent-skills  docs-lookup
+incluud/astro-agent-skills  migrate
+
+# Design / frontend
+0xdesign/design-plugin      design-lab
+addyosmani/agent-skills     frontend-ui-engineering
+emilkowalski/skills         emil-design-eng
+emilkowalski/skills         prototype
+emilkowalski/skills         review-animations
+
+# Writing / docs
+blader/humanizer            humanizer
+github/awesome-copilot      prd
+pproenca/dot-skills         dev-rfc
+wshobson/agents             postmortem-writing
+getsentry/skills            presentation-creator
+
+# Meta
+vercel-labs/skills          find-skills

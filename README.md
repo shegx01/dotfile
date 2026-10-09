@@ -16,6 +16,7 @@ My macOS configuration files.
 * [Neovim](https://neovim.io/) + [LazyVim](https://www.lazyvim.org/) — IDE-like Neovim config
 * [Starship](https://starship.rs/) — Shell prompt
 * [herdr](https://herdr.dev/) — Terminal multiplexer for AI coding agents
+* [Orca](https://onorca.dev/) — IDE for orchestrating AI coding agents across worktrees
 * [zoxide](https://github.com/ajeetdsouza/zoxide) — Smarter cd
 
 ### Browsers
@@ -62,6 +63,24 @@ That installs:
 Plugin settings that are worth keeping (the herdr-resurrect allowlist and
 settings) are tracked under `.config/herdr/plugins/config/`.
 
+### Orca
+Orca has no config file; its settings live in a SQLite profile store under
+`~/Library/Application Support/orca/`. `.config/orca/settings.json` is a snapshot
+of just the settings document (secrets, linked accounts and per-machine keys
+stripped), round-tripped by `.config/orca/sync-settings.sh`:
+
+* `sh ~/.config/orca/sync-settings.sh export` refreshes the snapshot from the app
+* `sh ~/.config/orca/sync-settings.sh apply` merges it back in (quit Orca first;
+  the profile DB is backed up alongside it). On a new machine, launch Orca once
+  so it creates its profile, quit it, then apply.
+
+### Agent skills
+Global skills (Orca, herdr, Astro, design, writing) are listed in
+`.agents/skills.txt` and installed by `.agents/install-skills.sh` through the
+[skills CLI](https://github.com/vercel-labs/skills). The installed copies and
+`~/.agents/.skill-lock.json` stay machine-local. Add a skill with
+`npx skills add <owner/repo> --skill <name> -g`, then add its line to the manifest.
+
 ### SketchyBar
 The config is done entirely in Lua (and some C), using
 [SbarLua](https://github.com/FelixKratz/SbarLua).
@@ -69,5 +88,3 @@ One-line install for sketchybar config (requires brew):
 ```bash
 curl -L https://raw.githubusercontent.com/shegx01/dotfiles/master/install_sketchybar.sh | sh
 ```
-# dotfile
-# dotfile

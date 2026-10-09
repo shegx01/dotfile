@@ -17,6 +17,7 @@ brew analytics off
 echo "Tapping Brew..."
 brew tap FelixKratz/formulae
 brew tap koekeishiya/formulae
+brew tap stablyai/orca
 
 ## Formulae
 echo "Installing Brew Formulae..."
@@ -72,6 +73,7 @@ brew install --cask brave-browser
 brew install --cask docker
 brew install --cask datagrip
 brew install --cask apidog
+brew install --cask stablyai/orca/orca
 
 ### Communication
 brew install --cask slack
@@ -177,6 +179,10 @@ echo "Installing global npm packages..."
 npm i -g oh-my-claude-sisyphus@latest
 npm i -g vscode-langservers-extracted
 
+# Global agent skills (needs node from asdf above)
+echo "Installing agent skills..."
+sh $HOME/.agents/install-skills.sh
+
 # Language servers
 echo "Installing language servers..."
 curl -sL https://github.com/elixir-tools/next-ls/releases/latest/download/next_ls_darwin_arm64 -o /opt/homebrew/bin/nextls && chmod +x /opt/homebrew/bin/nextls
@@ -196,6 +202,7 @@ brew services start sketchybar
 brew services start borders
 # brew services start svim # disabled
 
+echo "Orca: launch it once, quit it, then run: sh ~/.config/orca/sync-settings.sh apply"
 csrutil status
 echo "(optional) Disable SIP for advanced yabai features."
 echo "(optional) Add sudoer manually:\n '$(whoami) ALL = (root) NOPASSWD: sha256:$(shasum -a 256 $(which yabai) | awk "{print \$1;}") $(which yabai) --load-sa' to '/private/etc/sudoers.d/yabai'"
