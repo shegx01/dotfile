@@ -1,15 +1,30 @@
 #!/bin/zsh
 
+# Ask for the sudo password once and keep it fresh until this script exits, so
+# the Homebrew installer, .pkg-based casks and `sudo defaults` don't re-prompt.
+sudo -v
+while true; do sudo -n true; sleep 50; kill -0 "$$" || exit; done 2>/dev/null &
+
+# Unattended installs: no Homebrew confirmations, no first-time GitHub host-key prompt
+export NONINTERACTIVE=1
+export HOMEBREW_NO_ASK=1 # brew 7+ asks before every install by default
+export HOMEBREW_NO_ENV_HINTS=1
+export GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=accept-new"
+
 # Install xCode cli tools
-echo "Installing commandline tools..."
-xcode-select --install
-echo "Waiting for xcode-select installation to complete..."
-until xcode-select -p &>/dev/null; do sleep 5; done
+if ! xcode-select -p &>/dev/null; then
+  echo "Installing commandline tools..."
+  xcode-select --install
+  echo "Waiting for xcode-select installation to complete..."
+  until xcode-select -p &>/dev/null; do sleep 5; done
+fi
 
 # Homebrew
 ## Install
-echo "Installing Brew..."
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+if ! command -v brew &>/dev/null && [ ! -x /opt/homebrew/bin/brew ]; then
+  echo "Installing Brew..."
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
 eval "$(/opt/homebrew/bin/brew shellenv)"
 brew analytics off
 
@@ -191,7 +206,11 @@ rustup component add rust-analyzer
 
 # Python
 echo "Installing Python..."
-curl -L https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-MacOSX-arm64.sh | sh
+if [ ! -d "$HOME/miniforge3" ]; then
+  curl -L https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-MacOSX-arm64.sh -o /tmp/miniforge.sh
+  bash /tmp/miniforge.sh -b -p "$HOME/miniforge3" # -b: batch mode, accepts the license
+  rm -f /tmp/miniforge.sh
+fi
 source $HOME/.zshrc
 
 # Start Services
