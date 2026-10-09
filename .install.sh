@@ -1,13 +1,10 @@
 #!/bin/zsh
 
-# Ask for the sudo password once and keep it fresh until this script exits, so
-# the Homebrew installer, .pkg-based casks and `sudo defaults` don't re-prompt.
 sudo -v
 while true; do sudo -n true; sleep 50; kill -0 "$$" || exit; done 2>/dev/null &
 
-# Unattended installs: no Homebrew confirmations, no first-time GitHub host-key prompt
 export NONINTERACTIVE=1
-export HOMEBREW_NO_ASK=1 # brew 7+ asks before every install by default
+export HOMEBREW_NO_ASK=1
 export HOMEBREW_NO_ENV_HINTS=1
 export GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=accept-new"
 
@@ -33,7 +30,6 @@ echo "Tapping Brew..."
 brew tap FelixKratz/formulae
 brew tap asmvik/formulae
 brew tap stablyai/orca
-# brew 7+ refuses to load formulae/casks from third-party taps until trusted
 brew trust --tap FelixKratz/formulae asmvik/formulae stablyai/orca
 
 ## Formulae
@@ -157,8 +153,28 @@ sudo defaults write /Library/Preferences/com.apple.airport.bt.plist bluetoothCoe
 
 # Copying and checking out configuration files
 echo "Planting Configuration Files..."
-[ ! -d "$HOME/dotfiles" ] && git clone --bare git@github.com:shegx01/dotfile.git $HOME/dotfiles
-git --git-dir=$HOME/dotfiles/ --work-tree=$HOME checkout main
+DOTFILES_REPO="${DOTFILES_REPO:-git@github.com:shegx01/dotfile.git}"
+cfg() { git --git-dir="$HOME/dotfiles/" --work-tree="$HOME" "$@"; }
+if [ ! -d "$HOME/dotfiles" ]; then
+  git clone --bare "$DOTFILES_REPO" "$HOME/dotfiles"
+else
+  cfg remote set-url origin "$DOTFILES_REPO"
+  cfg fetch origin main
+  if [ -f "$HOME/dotfiles/index" ]; then
+    cfg merge --ff-only FETCH_HEAD
+  else
+    cfg update-ref refs/heads/main FETCH_HEAD
+  fi
+fi
+if ! cfg checkout main 2>/dev/null; then
+  backup="$HOME/.dotfiles-backup/$(date +%Y%m%d%H%M%S)"
+  echo "Backing up existing files that conflict with the dotfiles to $backup"
+  cfg checkout main 2>&1 | awk '/^[[:space:]]/ {print $1}' | while read -r f; do
+    mkdir -p "$backup/$(dirname "$f")"
+    mv "$HOME/$f" "$backup/$f"
+  done
+  cfg checkout main
+fi
 
 # herdr plugins (config is planted above; plugin payloads are machine-local)
 echo "Installing herdr plugins..."
@@ -196,7 +212,6 @@ echo "Installing global npm packages..."
 npm i -g oh-my-claude-sisyphus@latest
 npm i -g vscode-langservers-extracted
 
-# Global agent skills (needs node from asdf above)
 echo "Installing agent skills..."
 sh $HOME/.agents/install-skills.sh
 
@@ -210,7 +225,7 @@ rustup component add rust-analyzer
 echo "Installing Python..."
 if [ ! -d "$HOME/miniforge3" ]; then
   curl -L https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-MacOSX-arm64.sh -o /tmp/miniforge.sh
-  bash /tmp/miniforge.sh -b -p "$HOME/miniforge3" # -b: batch mode, accepts the license
+  bash /tmp/miniforge.sh -b -p "$HOME/miniforge3"
   rm -f /tmp/miniforge.sh
 fi
 source $HOME/.zshrc
