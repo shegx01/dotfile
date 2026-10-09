@@ -193,7 +193,7 @@ cfg config --local status.showUntrackedFiles no
 # asdf version manager
 echo "Installing asdf..."
 brew install asdf
-. "$(brew --prefix asdf)/libexec/asdf.sh"
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 
 ## asdf plugins
 echo "Installing asdf plugins..."

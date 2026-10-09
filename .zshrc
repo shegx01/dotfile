@@ -63,7 +63,7 @@ export BG1=0xff363944
 export BG2=0xff414550
 
 [ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
+# asdf shims are exported from .zshenv, so non-interactive shells get them too.
 
 # Only load conda into path but dont actually use the bloat that comes with it
 export PATH="$HOME/miniforge3/bin:/usr/local/anaconda3/bin:$PATH:/opt/homebrew/opt/llvm/bin"
