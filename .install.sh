@@ -31,10 +31,10 @@ brew analytics off
 ## Taps
 echo "Tapping Brew..."
 brew tap FelixKratz/formulae
-brew tap koekeishiya/formulae
+brew tap asmvik/formulae
 brew tap stablyai/orca
 # brew 7+ refuses to load formulae/casks from third-party taps until trusted
-brew trust --tap FelixKratz/formulae koekeishiya/formulae asmvik/formulae stablyai/orca
+brew trust --tap FelixKratz/formulae asmvik/formulae stablyai/orca
 
 ## Formulae
 echo "Installing Brew Formulae..."
