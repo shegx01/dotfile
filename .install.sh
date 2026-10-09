@@ -140,8 +140,8 @@ sudo defaults write /Library/Preferences/com.apple.airport.bt.plist bluetoothCoe
 
 # Copying and checking out configuration files
 echo "Planting Configuration Files..."
-[ ! -d "$HOME/dotfiles" ] && git clone --bare git@github.com:shegx01/dotfiles.git $HOME/dotfiles
-git --git-dir=$HOME/dotfiles/ --work-tree=$HOME checkout master
+[ ! -d "$HOME/dotfiles" ] && git clone --bare git@github.com:shegx01/dotfile.git $HOME/dotfiles
+git --git-dir=$HOME/dotfiles/ --work-tree=$HOME checkout main
 
 # herdr plugins (config is planted above; plugin payloads are machine-local)
 echo "Installing herdr plugins..."

@@ -86,5 +86,5 @@ The config is done entirely in Lua (and some C), using
 [SbarLua](https://github.com/FelixKratz/SbarLua).
 One-line install for sketchybar config (requires brew):
 ```bash
-curl -L https://raw.githubusercontent.com/shegx01/dotfiles/master/install_sketchybar.sh | sh
+curl -L https://raw.githubusercontent.com/shegx01/dotfile/main/install_sketchybar.sh | sh
 ```
