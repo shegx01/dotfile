@@ -153,27 +153,21 @@ sudo defaults write /Library/Preferences/com.apple.airport.bt.plist bluetoothCoe
 # Copying and checking out configuration files
 echo "Planting Configuration Files..."
 DOTFILES_REPO="${DOTFILES_REPO:-git@github.com:shegx01/dotfile.git}"
-cfg() { git --git-dir="$HOME/dotfiles/" --work-tree="$HOME" "$@"; }
-if [ ! -d "$HOME/dotfiles" ]; then
-  git clone --bare "$DOTFILES_REPO" "$HOME/dotfiles"
-else
-  cfg remote set-url origin "$DOTFILES_REPO"
-  cfg fetch origin main
-  if [ -f "$HOME/dotfiles/index" ]; then
-    cfg merge --ff-only FETCH_HEAD
-  else
-    cfg update-ref refs/heads/main FETCH_HEAD
-  fi
-fi
-if ! cfg checkout main 2>/dev/null; then
-  backup="$HOME/.dotfiles-backup/$(date +%Y%m%d%H%M%S)"
-  echo "Backing up existing files that conflict with the dotfiles to $backup"
-  cfg checkout main 2>&1 | awk '/^[[:space:]]/ {print $1}' | while read -r f; do
-    mkdir -p "$backup/$(dirname "$f")"
-    mv "$HOME/$f" "$backup/$f"
-  done
-  cfg checkout main
-fi
+cfg() { git -c core.quotepath=off --git-dir="$HOME/dotfiles/" --work-tree="$HOME" "$@"; }
+[ -d "$HOME/dotfiles" ] || git clone --bare "$DOTFILES_REPO" "$HOME/dotfiles"
+cfg remote set-url origin "$DOTFILES_REPO"
+cfg fetch origin main
+backup="$HOME/.dotfiles-backup/$(date +%Y%m%d%H%M%S)"
+{ cfg ls-files 2>/dev/null; cfg ls-tree -r --name-only FETCH_HEAD; } | sort -u | while read -r f; do
+  [ -f "$HOME/$f" ] || continue
+  cfg show "FETCH_HEAD:$f" 2>/dev/null | cmp -s - "$HOME/$f" && continue
+  mkdir -p "$backup/$(dirname "$f")"
+  cp -p "$HOME/$f" "$backup/$f"
+done
+[ -d "$backup" ] && echo "Backed up files replaced by the dotfiles to $backup"
+cfg update-ref refs/heads/main FETCH_HEAD
+cfg symbolic-ref HEAD refs/heads/main
+cfg reset -q --hard main
 
 # Installing Fonts
 git clone git@github.com:shaunsingh/SFMono-Nerd-Font-Ligaturized.git /tmp/SFMono_Nerd_Font
